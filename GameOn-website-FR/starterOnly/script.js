@@ -23,6 +23,8 @@ const checkbox1Error = document.getElementById("checkbox1Error");
 //regex
 
 const regValidation = /^[a-zA-Z]{2,}$/;
+let regexEmail =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 //variable validation envoie
 validation.addEventListener("click", validationFormulaire);
@@ -88,7 +90,12 @@ function validationNom() {
 //fonction validation mail
 
 function validationMail() {
+  const regValid = regexEmail.test(mail.value);
   if (mail.value === "") {
+    mailError.innerHTML = "Vous devez entrer une adresse mail valide.";
+
+    return false;
+  } else if (regValid === false) {
     mailError.innerHTML = "Vous devez entrer une adresse mail valide.";
 
     return false;
